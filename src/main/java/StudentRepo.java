@@ -1,3 +1,5 @@
+import lombok.NonNull;
+
 import java.util.*;
 
 public class StudentRepo {
@@ -17,7 +19,8 @@ public class StudentRepo {
         return Optional.ofNullable(students.get(id));
     }
 
-    public Student findById(String id) {
-        return null;
+    public Student findById(@NonNull String id) {
+        return findStudentById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Student with id " + id + " not found"));
     }
 }
